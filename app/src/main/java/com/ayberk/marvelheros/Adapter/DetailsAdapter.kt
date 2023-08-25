@@ -2,7 +2,9 @@ package com.ayberk.marvelheros.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.ayberk.marvelheros.DetailsFragmentDirections
 import com.ayberk.marvelheros.Models.Detail
 import com.ayberk.marvelheros.R
 import com.ayberk.marvelheros.databinding.DetailsItemBinding
@@ -21,6 +23,11 @@ class DetailsAdapter() : RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>(
 
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) {
         holder.bind(livedata!!.get(position))
+        holder.binding.linearLayout2.setOnClickListener {
+            val action = DetailsFragmentDirections.actionDetailsFragmentToMovieDetailsFragment(livedata!![position].id)
+            println("gönderilen detay id: ${livedata!![position].id}")
+                holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +41,7 @@ class DetailsAdapter() : RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>(
         }
     }
 
-    inner class DetailsViewHolder(private val binding: DetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class DetailsViewHolder(val binding: DetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(details: Detail) {
             binding.txtDetailHero.text = details.name
             Glide.with(binding.imgDetailHero)

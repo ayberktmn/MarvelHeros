@@ -32,4 +32,16 @@ class RetrofitRepository@Inject constructor(private val retroService: RetrofitIn
             }
         })
     }
+
+    fun getMovieDetails(liveData: MutableLiveData<HeroItem>){
+        retroService.getMovieDetails().enqueue(object : retrofit2.Callback<HeroItem>{
+            override fun onResponse(call: Call<HeroItem>, response: Response<HeroItem>) {
+                liveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<HeroItem>, t: Throwable) {
+                liveData.postValue(null)
+            }
+        })
+    }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.ayberk.marvelheros.DetailsFragmentDirections
 import com.ayberk.marvelheros.HomeFragment
 import com.ayberk.marvelheros.HomeFragmentDirections
 import com.ayberk.marvelheros.Models.HeroItem
@@ -28,7 +29,6 @@ class HeroAdapter() : RecyclerView.Adapter<HeroAdapter.HeroViewHolder>() {
         holder.binding.linearLayout.setOnClickListener {
            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(livedata!![position].id)
                holder.itemView.findNavController().navigate(action)
-            println("pozisyon: ${livedata!![position].id}")
         }
     }
 

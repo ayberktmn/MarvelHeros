@@ -31,5 +31,17 @@
         <argument
             android:name="HeroPosition"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.ayberk.marvelheros.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="MovieId"
+            app:argType="integer" />
     </fragment>
 </navigation>

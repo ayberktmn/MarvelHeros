@@ -27,7 +27,7 @@ class DetailsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: DetailsAdapter
     private val viewModel: HeroViewModel by viewModels()
-    lateinit var liste : Detail
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,23 +44,10 @@ class DetailsFragment : Fragment() {
         loadingDialog.window?.setBackgroundDrawableResource(android.R.color.transparent) // Arka planı şeffaf yap
         loadingDialog.setCancelable(false)
 
-       /* viewModel.getDetailsHero().observe(viewLifecycleOwner, object : Observer<HeroItem> {
-            override fun onChanged(t: HeroItem) {
-                arguments?.let {
-                    val gelen = DetailsFragmentArgs.fromBundle(it).heroPosition
-                    liste = t.details[gelen]
-                    adapter.setDetailLiveData(t.details)
-                    println("gelen: ${gelen}")
-
-                    // detay sayfasının dizaynına göre
-                 }
-            }
-        }) */
         viewModel.getDetailsHero().observe(viewLifecycleOwner, Observer { t ->
             if(t != null) {
                 arguments?.let {
                     val gelen = DetailsFragmentArgs.fromBundle(it).heroPosition
-                    println("gelen: ${gelen}")
                     adapter.setDetailLiveData((t[gelen].details))
                 }
             }
