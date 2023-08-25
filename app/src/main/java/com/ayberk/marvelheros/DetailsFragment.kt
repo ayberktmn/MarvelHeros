@@ -13,8 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ayberk.marvelheros.Adapter.DetailsAdapter
 import com.ayberk.marvelheros.Models.Detail
-import com.ayberk.marvelheros.Models.Hero
-import com.ayberk.marvelheros.Models.HeroItem
 import com.ayberk.marvelheros.ViewModel.HeroViewModel
 import com.ayberk.marvelheros.databinding.FragmentDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,15 +61,14 @@ class DetailsFragment : Fragment() {
                 arguments?.let {
                     val gelen = DetailsFragmentArgs.fromBundle(it).heroPosition
                     println("gelen: ${gelen}")
-                    adapter.setDetailLiveData(arrayListOf(t.details[gelen]))
-                    println("t null değil: ${t}")
+                    adapter.setDetailLiveData((t[gelen].details))
                 }
             }
             else{
                 println("t null: ${t}")
             }
         })
-        
+
         Handler(Looper.getMainLooper()).postDelayed({
 
             loadingDialog.dismiss()

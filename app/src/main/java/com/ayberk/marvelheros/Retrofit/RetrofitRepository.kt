@@ -21,13 +21,13 @@ class RetrofitRepository@Inject constructor(private val retroService: RetrofitIn
         })
     }
 
-    fun getDetails(liveData: MutableLiveData<HeroItem>){
-        retroService.getDetails().enqueue(object : retrofit2.Callback<HeroItem>{
-            override fun onResponse(call: Call<HeroItem>, response: Response<HeroItem>) {
+    fun getDetails(liveData: MutableLiveData<Hero>){
+        retroService.getDetails().enqueue(object : retrofit2.Callback<Hero>{
+            override fun onResponse(call: Call<Hero>, response: Response<Hero>) {
                 liveData.postValue(response.body())
             }
 
-            override fun onFailure(call: Call<HeroItem>, t: Throwable) {
+            override fun onFailure(call: Call<Hero>, t: Throwable) {
                 liveData.postValue(null)
             }
         })

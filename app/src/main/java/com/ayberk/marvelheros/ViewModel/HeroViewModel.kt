@@ -12,7 +12,7 @@ import javax.inject.Inject
 class HeroViewModel@Inject constructor(private val repository: RetrofitRepository) : ViewModel() {
 
     var HeroList : MutableLiveData<Hero>
-    var DetailsHeroList : MutableLiveData<HeroItem>
+    var DetailsHeroList : MutableLiveData<Hero>
 
     init {
         HeroList = MutableLiveData()
@@ -26,7 +26,7 @@ class HeroViewModel@Inject constructor(private val repository: RetrofitRepositor
         repository.getHeros(HeroList)
     }
 
-    fun getDetailsHero(): MutableLiveData<HeroItem>{
+    fun getDetailsHero(): MutableLiveData<Hero>{
         return DetailsHeroList
     }
     fun loadDetails(){

@@ -2,11 +2,12 @@ package com.ayberk.marvelheros.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ayberk.marvelheros.Models.Detail
 import com.ayberk.marvelheros.databinding.DetailsItemBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 
 class DetailsAdapter() : RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
 
