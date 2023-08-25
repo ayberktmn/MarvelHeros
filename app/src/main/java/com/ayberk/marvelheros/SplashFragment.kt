@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.ayberk.marvelheros.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import pl.droidsonroids.gif.GifImageView
 import javax.inject.Inject
 
@@ -21,32 +22,30 @@ class SplashFragment : Fragment() {
     @Inject
     lateinit var sessionManager: SessionManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSplashBinding.inflate(inflater,container,false)
         val view = binding.root
-        val gifImageView = view.findViewById<GifImageView>(R.id.GifImage)
-        Handler(Looper.getMainLooper()).postDelayed({
 
-            if (sessionManager.getIsFirstRun()){
-                gifImageView.setImageResource(R.drawable.splash)
+        if(sessionManager.getIsFirstRun()){
+            binding.GifImage.setImageResource(R.drawable.splash)
+            Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-            }
-            else{
-                gifImageView.setImageResource(R.drawable.splashh)
+            }, 30000)
+        } else{
+            binding.GifImage.setImageResource(R.drawable.splashh)
+            Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-
-            }
-
-        },3000)
+            }, 3000)
+        }
 
         return  view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
