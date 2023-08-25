@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ayberk.marvelheros.Models.Detail
+import com.ayberk.marvelheros.R
 import com.ayberk.marvelheros.databinding.DetailsItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -38,6 +39,7 @@ class DetailsAdapter() : RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>(
             binding.txtDetailHero.text = details.name
             Glide.with(binding.imgDetailHero)
                 .load(details.poster)
+                .apply(RequestOptions().placeholder(R.drawable.maxresdefault)) // Örnek: Placeholder resim ayarı
                 .into(binding.imgDetailHero)
         }
     }
