@@ -1,8 +1,10 @@
 package com.ayberk.marvelheros.Module
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.provider.SyncStateContract.Constants
 import com.ayberk.marvelheros.Retrofit.RetrofitInstance
+import com.ayberk.marvelheros.SessionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +23,10 @@ class Appmodule {
     @Provides
     @Singleton
     fun provideSharedPreferences (@ApplicationContext context: Context) = context.getSharedPreferences(Constants.ACCOUNT_NAME,Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideSessionManager(preferences: SharedPreferences) = SessionManager(preferences)
 
 
     @Provides

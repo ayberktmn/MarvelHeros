@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,9 +29,13 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: HeroAdapter
     private val viewModel: HeroViewModel by viewModels()
-
+    @Inject
+    lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (sessionManager.getIsFirstRun())
+            sessionManager.setIsFirstRun(false)
     }
 
     override fun onCreateView(

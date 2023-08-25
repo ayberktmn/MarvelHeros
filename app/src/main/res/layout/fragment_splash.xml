@@ -8,9 +8,10 @@
 
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="483dp"
-        android:layout_height="979dp"
-        android:src="@drawable/splash"
+        android:id="@+id/GifImage"
+        android:layout_width="432dp"
+        android:layout_height="915dp"
+        android:src="@drawable/splashh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
