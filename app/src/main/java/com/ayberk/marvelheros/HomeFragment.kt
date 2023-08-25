@@ -50,23 +50,13 @@ class HomeFragment : Fragment() {
         initRecycler()
         fetchHeros()
 
-        val loadingDialog = ProgressDialog(requireContext())
-        loadingDialog.show()
-        loadingDialog.setContentView(R.layout.loading_dialog)
-        loadingDialog.window?.setBackgroundDrawableResource(android.R.color.transparent) // Arka planı şeffaf yap
-        loadingDialog.setCancelable(false)
+
 
         viewModel.getHeroLiveData().observe(viewLifecycleOwner, Observer { t ->
             t?.let {
                 adapter.setHeroLive(t)
             }
         })
-
-        Handler(Looper.getMainLooper()).postDelayed({
-
-            loadingDialog.dismiss()
-
-        },750)
 
         return view
     }
