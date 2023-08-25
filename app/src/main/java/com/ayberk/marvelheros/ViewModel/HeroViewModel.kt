@@ -13,12 +13,12 @@ class HeroViewModel@Inject constructor(private val repository: RetrofitRepositor
 
     var HeroList : MutableLiveData<Hero>
     var DetailsHeroList : MutableLiveData<Hero>
-    var DetailsMovieList : MutableLiveData<HeroItem>
+
 
     init {
         HeroList = MutableLiveData()
         DetailsHeroList = MutableLiveData()
-        DetailsMovieList = MutableLiveData()
+
     }
 
     fun getHeroLiveData(): MutableLiveData<Hero>{
@@ -35,10 +35,5 @@ class HeroViewModel@Inject constructor(private val repository: RetrofitRepositor
         repository.getDetails(DetailsHeroList)
     }
 
-    fun getMovieDetails(): MutableLiveData<HeroItem>{
-        return DetailsMovieList
-    }
-    fun loadMovieDetails(){
-        repository.getDetails(DetailsHeroList)
-    }
+
 }
